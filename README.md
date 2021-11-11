@@ -20,9 +20,14 @@ The repo has been tested on Python 3.9.
 
 
 
-#### Pointnet2 Compile
-To run the hierarchical model, one has to comile the tensorflow operations of pointnet2 (`models/sem_seg/pointnet2/tf_op`).
-The compiled `*.so` files in this repo was based on CUDA 10.0 and above python packages.
+#### Create simulated  dataset
+To run the hierarchical model, we  has to construct our our simulated data
+To generate the dataset of the hierarchical  model:
+```bash
+cd Generate_SimulatedData
+python create_data.py
+```
+You can choose different random seeds to generat different manual datasets.
 
 
 
@@ -51,21 +56,17 @@ Download the Latest Version of HRLS and place them into `data`. The file folder 
 |       └──manual_dataAB.xlsx
 |       └── ...
 ```
-Each folder with <area_name> contains the point cloud and label data of one area. The `h_matrices` folders contains the hierarchical linear relationship between the label in one level and the bottom level. For other structure of data, one can modify data config file `data_list.yaml` to set customized path. In addition, the train/val/test split can be reset by the data config file.
-
-For the setting of sampling and model, each folder in `configs` contains one version of setting. The default config folder is `configs/sem_seg_default_block`, and there are captions for arguments in the config file of this folder.
+Each folder with `dataset` contains the required data for the corresponding test program. The `pic` folders contains the hierarchical linear relationship between the label in top level and the bottom level.  In addition, the train/val/test split dataset  can be reset by the divide_dataset.py config file.
+To divide the dataset of the model:
+```bash
+cd SimulatedData_Test
+python divide_dataset.py
+```
 
 To apply training of the model:
 ```bash
-cd Campus3D
-python engine/train.py -cfg <config_dir>
+cd SimulatedData_Test/RealData_Test
+python HRLS_Test/k-fold cross-validation.py 
 ```
-The default `<config_dir>` is `configs/sem_seg_default_block`. The model will be saved in `log/<dir_name>`, where the `<dir_name>` is the set "OUTPUT_DIR" in the config file.
+The model will be saved in `SimulatedData_Test/log.txt`, where every test result and model coefficient will store in it.
 
-
-To apply evaluation of the model on the test set:
-```bash
-cd Campus3D
-python engine/eval.py -cfg  <config_dir> -s TEST_SET -ckpt <check_point_name> -o <output_log> -gpu <gpu_id>
-```
-The `<check_point_name>` is the name of ckpt in `log/<dir_name>`, where the `<dir_name>` is the set "OUTPUT_DIR" in the config file. The result of IoU, Overall Accuracy and Consistency Rate wiil be written into `<output_log>`, for which the default name depends on the datetime. `<gpu_id>` is to set the gpu id for 'faiss' implementation of GPU based nearest neighbour search.
