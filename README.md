@@ -57,6 +57,7 @@ Download the Latest Version of HRLS and place them into `data`. The file folder 
 |       └── ...
 ```
 Each folder with `dataset` contains the required data for the corresponding test program. The `pic` folders contains the hierarchical linear relationship between the label in top level and the bottom level.  In addition, the train/val/test split dataset  can be reset by the divide_dataset.py config file.
+
 To divide the dataset of the model:
 ```bash
 cd SimulatedData_Test
