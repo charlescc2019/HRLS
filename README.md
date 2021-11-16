@@ -1,7 +1,7 @@
 # A Hierarchical Reconciliation Least Square Method for Linear Regression
 
-#### The repository contains the experiment data and implementation of this HRLS model in the paper to be delivered . 
-We propose a novel hierarchical forecasting structure of linear regression model and hierarchical reconciliation least square (HRLS) method, which can improve the accuracy of forecasting and consistency of forecasting，especially when the modelling uncertainty increased. The HRLS dataset including the simulated dataset and real dataset which have been uploaded to GitHub warehouse. You can use the create_data.py file to generate your own simulated dataset if you want. More details of the reproduce work are presented in the Paper to be delivered.
+#### The repository contains the experiment data and implementation of this HRLS model in the paper titled "A Hierarchical Reconciliation Least Square Method for Linear Regression" submitted to PAKDD 2022. 
+We propose a novel hierarchical forecasting structure of linear regression model and hierarchical reconciliation least square (HRLS) method, which can improve the accuracy of forecasting and consistency of forecasting，especially when the modelling uncertainty increased. This repository contains all data and source code of experimental studies of this paper.  It guarantees the reproducibility of the paper. 
 ![](fig2.png)
 
 ### Running Environment
